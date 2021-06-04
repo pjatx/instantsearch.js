@@ -129,7 +129,11 @@ class BrowserHistory implements Router {
 
     this.writeTimer = window.setTimeout(() => {
       setWindowTitle(title);
-      window.history.pushState(routeState, title || '', url);
+      
+      if(url !== window.location.href){
+        window.history.pushState(routeState, title || '', url);
+      }
+     
       this.writeTimer = undefined;
     }, this.writeDelay);
   }
